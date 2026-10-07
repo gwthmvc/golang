@@ -1,0 +1,56 @@
+# -----------------------------------------------------------------------------
+# Binaires et exécutables compilés
+# -----------------------------------------------------------------------------
+# Exécutables sans extension (courants sur Linux/macOS)
+# Si vous compilez votre binaire à la racine, ajoutez son nom spécifique ici, ex: /mon-appli
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Outils d'architecture et de build
+# Dossier conventionnel souvent utilisé pour stocker les binaires locaux
+bin/
+
+# -----------------------------------------------------------------------------
+# Artefacts de tests et de couverture
+# -----------------------------------------------------------------------------
+# Fichiers binaires de tests générés par `go test -c`
+*.test
+
+# Rapports et profils de couverture de code
+*.out
+*.coverprofile
+profile.cov
+
+# -----------------------------------------------------------------------------
+# Espace de travail et dépendances (Workspace)
+# -----------------------------------------------------------------------------
+# Fichiers de configuration du Go Workspace local (généralement non partagés)
+go.work
+go.work.sum
+
+# Dossier des dépendances locales (Vendoring)
+# À laisser ignoré par défaut. Décommentez (supprimez le #) UNIQUEMENT si 
+# votre organisation impose l'utilisation stricte de `go mod vendor`.
+# vendor/
+
+# -----------------------------------------------------------------------------
+# Variables d'environnement et secrets
+# -----------------------------------------------------------------------------
+.env
+.env-local
+*.local
+
+# -----------------------------------------------------------------------------
+# Fichiers système et éditeurs (Optionnel mais recommandé)
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
