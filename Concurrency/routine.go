@@ -18,7 +18,7 @@ type APIResponse struct {
 // fetchAdvice is our worker function. It runs in the background.
 // It accepts an ID number and a channel to send the finished text back to.
 func fetchAdvice(workerID int, ch chan string) {
-	url := "https://adviceslip.com"
+	url := "https://api.adviceslip.com/advice"
 	client := http.Client{Timeout: time.Second * 5}
 
 	fmt.Printf("[Worker %d] Starting API request...\n", workerID)
@@ -29,6 +29,11 @@ func fetchAdvice(workerID int, ch chan string) {
 		return
 	}
 	defer resp.Body.Close()
+
+	if resp.StatusCode < http.StatusOK || resp.StatusCode >= http.StatusMultipleChoices {
+		ch <- fmt.Sprintf("[Worker %d] API request failed: %s", workerID, resp.Status)
+		return
+	}
 
 	var result APIResponse
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
